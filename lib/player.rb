@@ -49,7 +49,7 @@ end
 
  #*NEW TYPE OF PLAYER
 
- class HumanPLayer < Player
+ class HumanPlayer < Player
     attr_accessor :weapon_level
 
     def initialize(name)
@@ -80,13 +80,46 @@ end
        else
             case new_weapon_level 
             when 2
-                puts "C'est une arme rouillée, mais elle infligera des dégats de tétHanos !"
+                puts "C'est une arme rouillée de niveau #{new_weapon_level}, mais elle infligera des dégats de tétHanos !"
+            
                 @weapon_level = new_weapon_level
             when (3..5)
-                puts "C'est une arme en mithril ! Quelle chance !"
+                puts "C'est une arme en mithril de niveau #{new_weapon_level}! Quelle chance !"
                 @weapon_level = new_weapon_level
             when 6
                 puts "TU AS TROUVÉ L'ARME ULTIME DE FEU ET DE TENEBRE MOUHAAAAWAWAWHAHAHAAA ! DEEESTRUCTIOOOON"  
+                puts text_to_ascii("ARME DE NIVEAU 6 ! ")
+                puts "
+                )         
+                  (            
+                '    }      
+              (    '      
+             '      (   
+              )  |    ) 
+            '   /|\    `
+           )   / | \  ` )   
+          {    | | |  {   
+         }     | | |  .
+          '    | | |    )
+         (    /| | |\    .
+          .  / | | | \  (
+        }    \ \ | / /  .        
+         (    \ `-' /    }
+         '    / ,-. \    ' 
+          }  / / | \ \  }
+         '   \ | | | /   } 
+          (   \| | |/  (
+            )  | | |  )
+            .  | | |  '
+               J | L
+         /|    J_|_L    |\
+         \ \___/ o \___/ /
+          \_____ _ _____/
+                |-|
+                |-|
+                |-|
+           hs  ,'-'.
+               '---' "
                 @weapon_level = new_weapon_level                  
             end
         end

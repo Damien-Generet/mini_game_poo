@@ -8,10 +8,6 @@ puts "------------------------------------------------
 |   Bienvenue sur 'ILS VEULENT TOUS MA POO' !   |
 | Le but du jeu est d'éliminer les politicard ! |
 -------------------------------------------------"
-def text_to_ascii(text)
-    a = Artii::Base.new
-    a.asciify(text)
-end
 
 def new_player
     puts "Quel est votre nom ? Jeune guerrier(ère) !"
