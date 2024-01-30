@@ -9,12 +9,12 @@ class Player
     end
 
     def show_state
-        if @life_point < 0
-            @life_point = 0
-            puts "#{@name} est MORT !"
+        if @life_point <= 0
+            print "#{@name} est MORT"
         else
-            puts "#{@name} à #{@life_point} points de vie"
-       end 
+            print "#{@name} a #{@life_point}"
+        end
+
     end
 
     def gets_damage(damage)

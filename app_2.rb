@@ -8,6 +8,10 @@ puts "------------------------------------------------
 |   Bienvenue sur 'ILS VEULENT TOUS MA POO' !   |
 | Le but du jeu est d'éliminer les politicard ! |
 -------------------------------------------------"
+def text_to_ascii(text)
+    a = Artii::Base.new
+    a.asciify(text)
+end
 
 def new_player
     puts "Quel est votre nom ? Jeune guerrier(ère) !"
@@ -49,22 +53,6 @@ puts " ___  ___  ___  _  _  _____   _
 end
 
 
-# def menu(p1, p2, human)
-#         puts "Voici l'état de #{human.name}"
-#         human.show_state
-#         puts "Que veux tu faire ?"
-#         puts "[a] Chercher une meilleure arme."
-#         puts "[s] Chercher une potion."
-#         puts "Pour partir au combat :"
-#         puts "[0] Attaquer #{p1.name}(#{p1.life_point}pv)"
-#         puts "[1] Attaquer #{p2.name}(#{p2.life_point}pv)"
-#         puts ""
-#         puts "Fais un choix :"
-#         print ">"
-#         choice = gets.chomp
-#     return choice
-# end
-
 def fight(p1, p2, human, ennemis)
     while p1.life_point > 0 && p2.life_point > 0 || human.life_point > 0
 
@@ -74,36 +62,52 @@ def fight(p1, p2, human, ennemis)
         puts "[a] Chercher une meilleure arme."
         puts "[s] Chercher une potion."
         puts "Pour partir au combat :"
-        puts "[0] #{p1.show_state}"
-        puts "[1] #{p2.show_state}"
+        print "[0]"
+        puts " #{p1.show_state}"
+        print "[1]"
+        puts" #{p2.show_state}"
         puts ""
         puts "Fais un choix :"
         print ">"
         choice = gets.chomp
-
+        system("clear")
         case choice
         when "a"
+            system("clear")
             human.search_weapon
+            sleep(2)
         when "s"
             human.search_health_pack
        
         when "0"
             human.attacks(p1)
             sleep(1)
-            end
       
         when "1"
             human.attacks(p2)
             sleep(1)
 
         end
-        
+        if human.life_point <= 0
+            puts "TU N'ES PAS DIGNE DE DIRIGER LE ROYAUME DE WALLONIE !"
+            break
+        elsif p2.life_point <= 0 && p1.life_point <= 0
+            puts "BRAVO ! LE LEO BELGICUS EST A TOI !"
+            break
+        else
+        puts " "
         puts "Cest au tour des ennemis d'attaquer !"
+        puts " "
         ennemis.each do |bot|
             if bot.life_point > 0
             bot.attacks(human)
+            puts ""
             sleep(1)
             end
+        end
+        puts "Appuies sur ENTER pour retourner au menu !"
+        gets.chomp
+    end
     end
 end
 
@@ -112,6 +116,7 @@ end
 def perform
     human = new_player 
     p1, p2, ennemis = bot
+    start_fight
   fight(p1, p2, human, ennemis)
 end
 
