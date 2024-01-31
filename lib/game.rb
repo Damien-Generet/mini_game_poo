@@ -4,7 +4,7 @@ class Game < HumanPlayer
     attr_accessor :human_player, :ennemies
 
     def text_to_ascii(text)
-        a = Artii::Base.new
+        a = Artii::Base.new                 # Call this def if you want to transform a str into ascii
         a.asciify(text)
     end
 
@@ -12,15 +12,15 @@ class Game < HumanPlayer
         @ennemies = []
         rng = RandomNameGenerator.new
         @human_player = HumanPlayer.new(name)
-        number_ennemies.times do |n|
-            ennemi_name = rng.compose(2)
+        number_ennemies.times do |n|                # Initialization of the human player
+            ennemi_name = rng.compose(2)            # and the bot. Call the initialize in player.rb
             @ennemies << Player.new(ennemi_name)
         end
     end
 
     def kill_player(dead_ennemi)
         if dead_ennemi.life_point <= 0
-        @ennemies.delete(dead_ennemi)
+        @ennemies.delete(dead_ennemi)               # After a round, check if a bot is dead and delete him from the array
         else
             puts "Il reste #{dead_ennemi.life_point}pv à #{dead_ennemi.name}"
         end
@@ -30,8 +30,8 @@ class Game < HumanPlayer
     def is_still_ongoing?
         if @human_player.life_point > 0 && @ennemies.length >= 1
             return false
-        else
-            return true
+        else                            #! Return true when the game is over. It means that if the human player is dead
+            return true                 #! or if all the bot are dead ( the array of ennemis is empty )
         end
     end
 
